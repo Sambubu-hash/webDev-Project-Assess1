@@ -1,0 +1,38 @@
+/* My buttons use Teko at 2em, with small spacing for the padding and
+   the border radius (spec 2.4 and 4.4) */
+.button {
+  padding: var(--space-small);
+  /* Teko sits a little high in its line, so I nudge the text down */
+  padding-bottom: calc(var(--space-small) - 0.1em);
+  border: 2px solid var(--colour-black);
+  border-radius: var(--space-small);
+  background-color: var(--colour-teal);
+  color: var(--colour-black);
+  font-family: var(--font-heading);
+  font-size: 2em;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase; /* matches the capitals in the wireframes */
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* On hover/focus it turns yellow and lifts up onto a hard shadow */
+.button:hover,
+.button:focus-visible {
+  background-color: var(--colour-yellow);
+  transform: translate(-3px, -3px);
+  box-shadow: 3px 3px 0 var(--colour-black);
+}
+
+/* When clicked it presses back down */
+.button:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+
+/* A clear outline for keyboard users */
+.button:focus-visible {
+  outline: 3px solid var(--colour-yellow);
+  outline-offset: 3px;
+}

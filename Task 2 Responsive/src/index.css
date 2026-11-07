@@ -1,0 +1,82 @@
+/* ==========================================================================
+   Global styles
+   I built this page mobile-first: the base values are for mobile, and my
+   two media queries only change what's different on tablet and desktop.
+   I keep the spec values here as CSS variables, so every component reads
+   them and the spacing updates everywhere from one place.
+   ========================================================================== */
+
+:root {
+  /* The watch.it brand colours (spec point 1) */
+  --colour-black: #070410;
+  --colour-purple: #231651;
+  --colour-teal: #4dccbd;
+  --colour-yellow: #eef36a;
+  --colour-white: #ffffff;
+
+  /* My fonts (spec point 4.1), with fallbacks in case they don't load */
+  --font-heading: 'Teko', 'Arial Narrow', sans-serif;
+  --font-body: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+
+  /* My spacing (spec point 2): these are the mobile values */
+  --space-small: 16px;
+  --space-large: 16px;
+
+  /* How far my hard drop shadows sit from the element (copied from the wireframes) */
+  --shadow-offset: 8px;
+
+  /* The max width of my main content container (spec point 3) */
+  --content-max-width: 900px;
+}
+
+/* Tablet (720px and up): I only need to make the large spacing bigger */
+@media (min-width: 720px) {
+  :root {
+    --space-large: 32px;
+  }
+}
+
+/* Desktop (1024px and up): the large spacing grows again */
+@media (min-width: 1024px) {
+  :root {
+    --space-large: 48px;
+  }
+}
+
+/* I use border-box everywhere so padding doesn't add to an element's width */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Page defaults: purple background, body font and line height */
+body {
+  margin: 0;
+  min-width: 320px;
+  background-color: var(--colour-purple);
+  color: var(--colour-black);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* All my headings use Teko */
+h1,
+h2 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* I reset the default margins so I control all the spacing myself */
+p {
+  margin: 0;
+}
+
+/* Images behave like blocks and never overflow their container */
+img {
+  display: block;
+  max-width: 100%;
+}

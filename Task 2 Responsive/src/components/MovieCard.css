@@ -1,0 +1,125 @@
+/* ==========================================================================
+   MovieCard
+   Each card is its own small CSS Grid. I named the areas with
+   grid-template-areas, so on desktop I only have to rearrange the areas.
+   I didn't need any extra markup or separate components.
+
+   Mobile and tablet (every card):    Desktop "featured":   Desktop "wide":
+     poster                             poster  poster        poster  info
+     info                               info    button        poster  button
+     button
+   ========================================================================== */
+
+.movie-card {
+  display: grid;
+  grid-template-areas:
+    'poster'
+    'info'
+    'button';
+  /* The info row stretches, so all the buttons line up at the bottom */
+  grid-template-rows: auto 1fr auto;
+  row-gap: var(--space-small); /* cards use small spacing (spec 2.3) */
+  font-size: 1.5em; /* spec 4.3 */
+  background-color: var(--colour-white);
+  border: 2px solid var(--colour-black);
+  /* Hard shadow with no blur, like the wireframes */
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--colour-black);
+}
+
+/* The poster is a square on mobile and tablet. object-fit: cover fills
+   the space without stretching the image. */
+.movie-card__poster {
+  grid-area: poster;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* The text area gets small spacing on the left and right */
+.movie-card__info {
+  grid-area: info;
+  padding-inline: var(--space-small);
+}
+
+.movie-card__title {
+  margin-bottom: 0.2em;
+  color: var(--colour-purple);
+  font-size: 1.5em;
+}
+
+/* The year is lighter so the title stands out */
+.movie-card__year {
+  font-weight: 400;
+  opacity: 0.6;
+}
+
+.movie-card__description {
+  line-height: 1.4;
+}
+
+/* Small spacing around the button, except on top (the row gap handles that) */
+.movie-card__button {
+  grid-area: button;
+  margin: 0 var(--space-small) var(--space-small);
+}
+
+/* --------------------------------------------------------------------------
+   Desktop: 1024px and up
+   -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  /* Featured card: spans both columns, with a wide poster on top
+     and the text and button side by side underneath */
+  .movie-card--featured {
+    grid-column: 1 / -1;
+    grid-template-areas:
+      'poster poster'
+      'info   button';
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto;
+    column-gap: var(--space-small);
+  }
+
+  /* I made the poster a wide 3:1 strip and moved the crop up
+     so the poster's title stays in view */
+  .movie-card--featured .movie-card__poster {
+    aspect-ratio: 3 / 1;
+    object-position: center 20%;
+  }
+
+  /* The column gap now spaces the text from the button, so I remove the extra padding */
+  .movie-card--featured .movie-card__info {
+    padding-right: 0;
+    padding-bottom: var(--space-small);
+  }
+
+  .movie-card--featured .movie-card__button {
+    margin-left: 0;
+  }
+
+  /* Wide cards: span both columns, with a square poster on the left
+     and the text and button on the right */
+  .movie-card--wide {
+    grid-column: 1 / -1;
+    grid-template-areas:
+      'poster info'
+      'poster button';
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    column-gap: var(--space-small);
+  }
+
+  /* The poster fills the full height of the card */
+  .movie-card--wide .movie-card__poster {
+    height: 100%;
+  }
+
+  /* There's no poster above the text here, so I add spacing on top instead */
+  .movie-card--wide .movie-card__info {
+    padding-top: var(--space-small);
+    padding-left: 0;
+  }
+
+  .movie-card--wide .movie-card__button {
+    margin-left: 0;
+  }
+}

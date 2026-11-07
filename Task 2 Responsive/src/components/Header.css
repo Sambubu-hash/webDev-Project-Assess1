@@ -1,0 +1,87 @@
+/* ==========================================================================
+   Header (spec point 2.2)
+   Small spacing around the header, large spacing between the nav links.
+   Mobile shows only the logo and SEARCH; from tablet up the genre links
+   appear between them.
+   ========================================================================== */
+
+/* I lay the header out in a row with Flexbox: logo left, button right */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-small);
+  padding: var(--space-small);
+  background-color: var(--colour-black);
+  color: var(--colour-white);
+  /* A hard teal bar under the header, based on the shadow in the wireframe */
+  box-shadow: 0 var(--shadow-offset) 0 var(--colour-teal);
+}
+
+/* The logo is 2em on mobile (spec 4.2). nowrap keeps "watch.it" on one line. */
+.header__logo {
+  font-size: 2em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.header__logo a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* The ".it" part in teal */
+.header__logo-accent {
+  color: var(--colour-teal);
+}
+
+/* I hide the genre links on mobile, like the mobile wireframe */
+.header__nav {
+  display: none;
+}
+
+/* The links sit in a centred row with large spacing between them (spec 2.2) */
+.header__nav-list {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-large);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* I draw the yellow underline with a background so I can animate it on hover */
+.header__nav-link {
+  color: inherit;
+  text-decoration: none;
+  background-image: linear-gradient(var(--colour-yellow), var(--colour-yellow));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px; /* starts with no width */
+  padding-bottom: 2px;
+  transition: background-size 0.2s ease, color 0.2s ease;
+}
+
+/* On hover the link turns yellow and the underline grows */
+.header__nav-link:hover,
+.header__nav-link:focus-visible {
+  color: var(--colour-yellow);
+  background-size: 100% 2px;
+}
+
+/* flex-shrink: 0 stops the search button getting squashed */
+.header__search {
+  flex-shrink: 0;
+}
+
+/* Tablet and up: the logo grows to 3em (spec 4.2) and I show the nav */
+@media (min-width: 720px) {
+  .header__logo {
+    font-size: 3em;
+  }
+
+  .header__nav {
+    display: block;
+    flex: 1; /* fills the space between logo and button, so the links sit in the middle */
+  }
+}

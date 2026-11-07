@@ -1,0 +1,21 @@
+/* ==========================================================================
+   Main content container (spec points 2.1 and 3)
+   I used CSS Grid for my movie cards, with a 900px max width and large
+   spacing. One column on mobile, two from tablet up.
+   ========================================================================== */
+
+.movie-list {
+  display: grid;
+  grid-template-columns: 1fr; /* mobile: one card per row */
+  gap: var(--space-large);
+  max-width: var(--content-max-width);
+  margin: 0 auto; /* centres the container */
+  padding: var(--space-large);
+}
+
+/* Tablet and up: two equal columns */
+@media (min-width: 720px) {
+  .movie-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
