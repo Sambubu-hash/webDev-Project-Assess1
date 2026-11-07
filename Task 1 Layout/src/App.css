@@ -1,0 +1,14 @@
+/* ==========================================================================
+   Content column
+   I give the column a max width from the wireframe and centre it with auto
+   margins. On smaller screens it just fills the width.
+   ========================================================================== */
+
+.content {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  background-color: var(--colour-content);
+  /* I added a faint outline, like the wireframe, so the grey comments
+     section still looks like part of the column */
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}

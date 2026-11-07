@@ -1,0 +1,59 @@
+/* A Flexbox list with 10px between icons (spec point 4) */
+.social-icons {
+  display: flex;
+  gap: var(--space-icons);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Row version (footer): icons side by side and centred */
+.social-icons--row {
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* Column version (author section): icons stacked */
+.social-icons--column {
+  flex-direction: column;
+}
+
+/* Each icon is a 50px circle (spec point 3) */
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-social-icon);
+  height: var(--size-social-icon);
+  border-radius: 50%;
+  overflow: hidden;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* On hover the icon lifts up slightly and fades a little */
+.social-icon:hover,
+.social-icon:focus-visible {
+  transform: translateY(-3px);
+  opacity: 0.85;
+}
+
+/* A visible outline for keyboard users */
+.social-icon:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* The image fills the circle without being distorted */
+.social-icon__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* The X/Twitter logo I was given is white with no background, so I put it
+   on a black circle. That keeps it visible on white and matches the other
+   round icons. */
+.social-icon--twitter {
+  background-color: #000000;
+  padding: 13px;
+}

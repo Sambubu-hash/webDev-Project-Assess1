@@ -1,0 +1,42 @@
+/* I put the text, photo and icons in a row with Flexbox,
+   centred vertically and 50px apart */
+.author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space);
+  padding: var(--space);
+}
+
+/* The text takes the remaining space, up to a readable width */
+.author__text {
+  flex: 1;
+  max-width: 24rem;
+}
+
+.author__heading {
+  margin-bottom: 0.3em;
+  text-align: center;
+}
+
+/* The photo stays exactly 200px (spec point 2). flex-shrink: 0 stops it
+   getting squashed, and border-radius makes it a circle. */
+.author__photo {
+  flex-shrink: 0;
+  width: var(--size-author-photo);
+  height: var(--size-author-photo);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* On narrow screens I stack everything and lay the icons out in a row */
+@media (max-width: 760px) {
+  .author {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .author .social-icons {
+    flex-direction: row;
+  }
+}

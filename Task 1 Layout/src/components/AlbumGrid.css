@@ -1,0 +1,40 @@
+/* I used CSS Grid with four equal columns. The grid has no padding so it
+   runs edge to edge inside the content column, like the wireframe. */
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Every cell is a square. overflow: hidden keeps the hover zoom inside it. */
+.album-grid__item {
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+/* The featured album spans 2 columns and 2 rows */
+.album-grid__item--featured {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* object-fit: cover fills the square without stretching the artwork */
+.album-grid__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* A small zoom when you hover over an album */
+.album-grid__item:hover .album-grid__image {
+  transform: scale(1.05);
+}
+
+/* On phones I switch to two columns: the featured album becomes a
+   full-width square and the other four sit in a 2x2 block below it */
+@media (max-width: 600px) {
+  .album-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

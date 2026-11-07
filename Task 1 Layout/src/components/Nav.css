@@ -1,0 +1,35 @@
+/* I use Flexbox to spread the links evenly across the width.
+   flex-wrap lets them drop onto a new line on narrow screens. */
+.nav__list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: var(--space-icons) var(--space);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* I draw the underline with a background image so I can animate it on hover */
+.nav__link {
+  display: inline-block;
+  padding: 0.25em 0;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px; /* starts with no width */
+  transition: background-size 0.25s ease;
+}
+
+/* On hover or keyboard focus the underline grows to full width */
+.nav__link:hover,
+.nav__link:focus-visible {
+  background-size: 100% 2px;
+}
+
+/* A visible outline for people navigating with the keyboard */
+.nav__link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}

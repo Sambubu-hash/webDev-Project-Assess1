@@ -1,0 +1,88 @@
+/* The article sits inside the standard 50px spacing */
+.article {
+  padding: var(--space);
+}
+
+/* --- Title ------------------------------------------------------------- */
+
+/* My title is much bigger than the other headings (spec 5.2).
+   I used clamp() so it shrinks on small screens instead of overflowing. */
+.article__title {
+  font-size: clamp(3rem, 11vw, 6.5rem);
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+}
+
+/* display: block puts the subtitle on its own line, at about heading size */
+.article__subtitle {
+  display: block;
+  margin-top: 0.15em;
+  font-size: clamp(2rem, 6vw, 3.375rem); /* 3em of my 18px body text */
+  line-height: 1;
+}
+
+/* --- Intro paragraph --------------------------------------------------- */
+
+/* The first paragraph is larger (spec 5.3). I limit its width so the
+   lines don't get too long to read comfortably. */
+.article__intro {
+  max-width: 34em;
+  margin: 0.9em 0 0;
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+/* --- Body columns ------------------------------------------------------ */
+
+/* I used CSS multi-column layout so the text flows from one column into
+   the next, like in the wireframe, without me splitting it by hand */
+.article__columns {
+  margin-top: var(--space);
+  column-count: 3;
+  column-gap: 2rem;
+}
+
+/* break-after: avoid stops a heading being left alone at the bottom of a column */
+.article__heading {
+  margin-bottom: 0.4em;
+  break-after: avoid;
+}
+
+/* Space above every heading except the first one */
+.article__section + .article__section .article__heading {
+  margin-top: 0.75em;
+}
+
+/* Paragraph spacing, plus hyphenation and widows/orphans control
+   to make the narrow columns easier to read */
+.article__paragraph {
+  margin-bottom: 1.2em;
+  hyphens: auto;
+  orphans: 3;
+  widows: 3;
+}
+
+/* No extra space after the very last paragraph */
+.article__section:last-child .article__paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Responsive -------------------------------------------------------- */
+
+/* On tablets I drop to two columns of text */
+@media (max-width: 900px) {
+  .article__columns {
+    column-count: 2;
+  }
+}
+
+/* On phones it's a single column, with a slightly smaller intro */
+@media (max-width: 600px) {
+  .article__columns {
+    column-count: 1;
+  }
+
+  .article__intro {
+    font-size: 1.25rem;
+  }
+}

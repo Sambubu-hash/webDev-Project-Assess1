@@ -1,0 +1,34 @@
+/* I gave the comments the page grey so they stand apart from the article */
+.comments {
+  padding: var(--space);
+  background-color: var(--colour-page);
+}
+
+.comments__heading {
+  margin-bottom: 0.4em;
+}
+
+/* I stack the comments with Flexbox and space them out for readability */
+.comments__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* I keep comment lines short, like in the wireframe */
+.comment {
+  max-width: 34rem;
+}
+
+.comment__username {
+  margin-bottom: 0.2em;
+  font-weight: 700;
+}
+
+/* A softer grey for the comment text so the usernames stand out */
+.comment__text {
+  color: var(--colour-text-muted);
+}

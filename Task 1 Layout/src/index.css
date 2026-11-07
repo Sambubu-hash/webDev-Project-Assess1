@@ -1,0 +1,87 @@
+/* ==========================================================================
+   Global styles
+   I keep all the values from the spec here as CSS variables, so every
+   component uses the same colours, fonts and spacing, and I only need to
+   change a value in one place.
+   ========================================================================== */
+
+:root {
+  /* My colours (spec point 1) */
+  --colour-page: #e9e9e9;
+  --colour-content: #ffffff;
+  --colour-footer: #14181d;
+  --colour-text: #1b1b1b;
+  --colour-text-muted: #555555;
+  --colour-text-light: #f2f2f2;
+
+  /* My fonts (spec point 5.1), with fallbacks in case they don't load */
+  --font-heading: 'Protest Guerrilla', Impact, 'Arial Black', sans-serif;
+  --font-body: 'Josefin Sans', 'Helvetica Neue', Arial, sans-serif;
+
+  /* My spacing (spec point 4) */
+  --space: 50px; /* standard spacing between elements */
+  --space-icons: 10px; /* spacing between social media icons */
+
+  /* My fixed sizes (spec points 2 and 3) */
+  --size-logo: 200px;
+  --size-author-photo: 200px;
+  --size-social-icon: 50px;
+
+  /* Width of my white content column, measured from the wireframe */
+  --content-width: 875px;
+}
+
+/* I use border-box everywhere so padding doesn't add to an element's width */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Page defaults: grey background, body font and a comfortable line height */
+body {
+  margin: 0;
+  background-color: var(--colour-page);
+  color: var(--colour-text);
+  font-family: var(--font-body);
+  font-size: 1.125rem; /* 18px, because Josefin Sans looks small at 16px */
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* All my headings use the display font */
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 400; /* Protest Guerrilla only comes in one weight */
+  line-height: 1.1;
+  margin: 0;
+}
+
+/* Headings are 3x the body font size (spec 5.2) */
+h2 {
+  font-size: 3em;
+}
+
+/* I reset the default margins so I control all the spacing myself */
+p {
+  margin: 0;
+}
+
+/* Images behave like blocks and never overflow their container */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+/* On phones I halve the standard spacing so the content keeps enough width */
+@media (max-width: 600px) {
+  :root {
+    --space: 25px;
+  }
+}
